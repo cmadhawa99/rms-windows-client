@@ -1,0 +1,42 @@
+# =========================
+# 1. C# & .NET (Desktop Client)
+# =========================
+**/[Bb]in/
+**/[Oo]bj/
+*.user
+*.userprefs
+*.suo
+**/.vs/
+**/packages/
+*.nupkg
+
+# =========================
+# 2. JetBrains IDEs (Rider & PyCharm)
+# =========================
+**/.idea/
+*.iml
+
+# =========================
+# 3. Python & Django (Backend)
+# =========================
+**/__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# =========================
+# 4. WebView2 Browser Data
+# =========================
+*.exe.WebView2/
+EBWebView/
+
+# =========================
+# 5. OS Generated Files
+# =========================
+.DS_Store
+Thumbs.db
