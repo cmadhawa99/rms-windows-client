@@ -10,7 +10,7 @@ namespace LetterPortal
     public partial class Form1 : Form
     {
         private WebView2 webView;
-        private const string ServerUrl = "http://127.0.0.1:8000";
+        private const string ServerUrl = "http://DESKTOP-NHOO4UE:8000";
 
         public Form1()
         {
@@ -54,19 +54,31 @@ namespace LetterPortal
 
         private async System.Threading.Tasks.Task<bool> IsServerRunning(string url)
         {
-            try
-            {
-                using var client = new HttpClient();
-                client.Timeout = TimeSpan.FromSeconds(3);
-                var response = await client.GetAsync(url);
-                return true;
-            }
-
-            catch
-            {
-                return false;
-            }
+            using var client = new HttpClient();
             
+            client.Timeout = TimeSpan.FromSeconds(2); 
+    
+            int maxRetries = 5; 
+
+            for (int i = 0; i < maxRetries; i++)
+            {
+                try
+                {
+                    var response = await client.GetAsync(url);
+                    
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return true; 
+                    }
+                }
+                catch (Exception)
+                {
+
+                    await System.Threading.Tasks.Task.Delay(1000); 
+                }
+            }
+            MessageBox.Show("Could not reach the server after 5 attempts. Please check if the port is blocked.", "Connection Timeout");
+            return false;
         }
     }
 }
